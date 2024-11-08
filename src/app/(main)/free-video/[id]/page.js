@@ -14,6 +14,8 @@ export async function generateMetadata({ params }, parent) {
   console.log("videodatataa", video);
 
   const thumbnailUrl = `https://dewv7gdonips4.cloudfront.net/${video.thumbnail_url}`;
+  const fallbackImageUrl =
+    "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png";
 
   console.log("thumbnail_url", thumbnailUrl);
   return {
@@ -25,9 +27,16 @@ export async function generateMetadata({ params }, parent) {
       images: [
         {
           url: thumbnailUrl,
-          width: 1200,
-          height: 630,
+          width: 1920,
+          height: 1080,
+          type: "image/webp",
           alt: video.title,
+        },
+        {
+          url: fallbackImageUrl,
+          width: 272,
+          height: 92,
+          alt: "Google Search",
         },
       ],
       // Specify the type as 'video.other' for video content
