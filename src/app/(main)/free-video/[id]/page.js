@@ -11,25 +11,11 @@ export async function generateMetadata({ params }, parent) {
 
   const videoData = await rVideo.json();
 
-  const rThumbnail = await fetch(`https://api.stringgeo.com/api/fetch-image`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-
-    body: JSON.stringify({
-      link: "https://dewv7gdonips4.cloudfront.net/uploads/user-668e5194d73df6053315bb41/profile/1726149009101-Sahebstrailertelugu.jpg.webp",
-    }),
-  });
-
-  // const thumbnailData = await rThumbnail.json();
-
   console.log("videodatataa", videoData);
-  console.log("thumbnail", await rThumbnail.blob());
 
-  const thumbnailUrl =
-    "https://dewv7gdonips4.cloudfront.net/uploads/user-668e5194d73df6053315bb41/profile/1726149009101-Sahebstrailertelugu.jpg.webp";
+  const thumbnailUrl = `https://dewv7gdonips4.cloudfront.net/${videoData.video.thumbnail_url}`;
 
+  console.log("thumbnail_url", thumbnailUrl);
   return {
     title: videoData.title,
     description: videoData.description,
@@ -61,13 +47,6 @@ export async function generateMetadata({ params }, parent) {
       title: videoData.title,
       description: videoData.description,
       images: [thumbnailUrl],
-    },
-    // Other metadata
-    // Add this section to include the thumbnail for WhatsApp sharing
-    "whatsapp-catalog-image": {
-      url: thumbnailUrl,
-      width: 1200,
-      height: 630,
     },
   };
 }
