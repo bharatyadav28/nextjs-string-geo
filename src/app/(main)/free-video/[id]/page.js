@@ -9,32 +9,32 @@ export async function generateMetadata({ params }, parent) {
     `https://api.stringgeo.com/api/free-video/get-video/${params.id}`
   );
 
-  const videoData = await rVideo.json();
+  const { video } = await rVideo.json();
 
-  console.log("videodatataa", videoData);
+  console.log("videodatataa", video);
 
-  const thumbnailUrl = `https://dewv7gdonips4.cloudfront.net/${videoData.video.thumbnail_url}`;
+  const thumbnailUrl = `https://dewv7gdonips4.cloudfront.net/${video.thumbnail_url}`;
 
   console.log("thumbnail_url", thumbnailUrl);
   return {
-    title: videoData.title,
-    description: videoData.description,
+    title: video.title.substring(0, 100),
+    description: video.description,
     openGraph: {
-      title: videoData.title,
-      description: videoData.description,
+      title: video.title,
+      description: video.description,
       images: [
         {
           url: thumbnailUrl,
           width: 1200,
           height: 630,
-          alt: videoData.title,
+          alt: video.title,
         },
       ],
       // Specify the type as 'video.other' for video content
       type: "video.other",
       videos: [
         {
-          url: videoData.video_url, // Add if you want to enable video preview
+          url: video.video_url, // Add if you want to enable video preview
           width: 1280,
           height: 720,
           type: "video/mp4",
@@ -44,8 +44,8 @@ export async function generateMetadata({ params }, parent) {
     // Twitter Card metadata
     twitter: {
       card: "summary_large_image",
-      title: videoData.title,
-      description: videoData.description,
+      title: video.title,
+      description: video.description,
       images: [thumbnailUrl],
     },
   };
