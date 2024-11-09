@@ -52,8 +52,8 @@ export async function generateMetadata({ params }) {
 
 async function Page({ params }) {
   const id = params.id;
-  return <div>video page</div>;
-  // return <VideoPage id={id} />;
+  // return <div>video page</div>;
+  return <VideoPage id={id} />;
 }
 
 export default Page;
