@@ -1,4 +1,6 @@
 import React from "react";
+import dynamic from "next/dynamic";
+
 // import VideoPage from "@/ClientPages/VideoPage";
 
 // Generate metadata for the video page
