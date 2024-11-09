@@ -12,6 +12,8 @@ export async function generateMetadata({ params }) {
   // Thumbnail URL Generated
   const thumbnailUrl = `https://dewv7gdonips4.cloudfront.net/${video.thumbnail_url}`;
 
+  console.log("thumbnailUrl", thumbnailUrl);
+
   return {
     title: video.title.substring(0, 100),
     description: video.description,
@@ -26,7 +28,7 @@ export async function generateMetadata({ params }) {
           height: 630, // Set standard height
         },
       ],
-      url: `https://your-domain.com/video/${video.id}`,
+      // url: `https://your-domain.com/video/${video.id}`,
       videos: [
         {
           url: video.video_url,
@@ -50,7 +52,8 @@ export async function generateMetadata({ params }) {
 
 async function Page({ params }) {
   const id = params.id;
-  return <VideoPage id={id} />;
+  return <div>video page</div>;
+  // return <VideoPage id={id} />;
 }
 
 export default Page;
