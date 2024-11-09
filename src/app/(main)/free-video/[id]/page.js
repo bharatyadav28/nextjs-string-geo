@@ -1,5 +1,5 @@
 import React from "react";
-import VideoPage from "@/ClientPages/VideoPage";
+// import VideoPage from "@/ClientPages/VideoPage";
 
 // Generate metadata for the video page
 export async function generateMetadata({ params }) {
@@ -53,6 +53,10 @@ export async function generateMetadata({ params }) {
 async function Page({ params }) {
   const id = params.id;
   // return <div>video page</div>;
+
+  const VideoPage = dynamic(() => import("@/ClientPages/VideoPage"), {
+    ssr: false, // Since it's a client component
+  });
   return <VideoPage id={id} />;
 }
 
